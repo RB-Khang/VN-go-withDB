@@ -1,5 +1,4 @@
-import {  createSlice } from '@reduxjs/toolkit';
-import { testThunk } from './testThunk';
+import { createSlice } from '@reduxjs/toolkit';
 
 type initialStateType = {
     test: number;
@@ -12,11 +11,7 @@ export const AuthSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {},
-    extraReducers: (builder) => {
-        builder.addCase(testThunk.fulfilled, (state, { payload }) => {
-            state.test += payload;
-        });
-    },
+    extraReducers: (builder) => {},
 });
 
 export const { actions: authActions, reducer: authReducer } = AuthSlice;
