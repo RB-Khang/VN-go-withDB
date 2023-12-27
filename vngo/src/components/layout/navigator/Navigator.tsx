@@ -31,7 +31,7 @@ const items: MenuProps['items'] = [
         getItem('Âm nhạc', 'sub3', null, [getItem('My blog', 'blogs'), getItem('note 2', '4')]),
     ]),
     getItem(<h1 className="font-bold text-[16px]">Khoá học</h1>, 'sub4', null, [
-        getItem('Free', '5'),
+        getItem('Free', 'free-course'),
         getItem('Option 6', '6'),
     ]),
     { type: 'divider' },
@@ -44,7 +44,7 @@ const items: MenuProps['items'] = [
 const Navigator: React.FC = () => {
     const { redirect } = useRoute();
     const onClick: MenuProps['onClick'] = (e) => {
-       redirect(e.key);
+        redirect(e.key);
     };
 
     return (
@@ -59,7 +59,7 @@ const Navigator: React.FC = () => {
                         itemSelectedBg: '#1b69c2',
                         itemHoverBg: '#145399',
                         groupTitleColor: '#white',
-                        subMenuItemBg:'#4093ee'
+                        subMenuItemBg: '#4093ee',
                     },
                 },
             }}

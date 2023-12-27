@@ -1,19 +1,31 @@
 import { useRouter } from 'next/navigation';
-import { RouteItem, RouteArray } from '@/constant/route';
+import { RouteArray } from '@/constant/route';
 import Router from '@/constant/route';
 
 export default function useRoute() {
-    const router = useRouter();
+    const Route = useRouter();
 
-    function redirect(routeName: string, routes: RouteArray = Router, prefix?: string): void {
-        for (const route of routes) {
-            const path = prefix ? prefix + '/' + route.name : route.name;
-            if (route.name === routeName) {
-                router.push(path);
+    function getPath(key?: string, arr: RouteArray = Router): string {
+        for (const route of arr) {
+            if (route.name === key) {
+                return route.url;
             }
-            redirect(routeName, route.children, path);
+
+            if (Array.isArray(route.children) && route.children.length > 0) {
+                const childPath = getPath(key, route.children);
+                if (childPath) {
+                    return childPath;
+                }
+            }
         }
+        return '';
     }
 
+    function redirect(key: string) {
+        if (getPath(key)) {
+            const url = new URL(getPath(key), window.location.origin);
+            Route.push(url.href);
+        }
+    }
     return { redirect };
 }
