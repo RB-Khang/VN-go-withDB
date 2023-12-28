@@ -72,3 +72,8 @@ body {
     max-height: 100%;
     width: auto;
 }
+
+.auth-bg {
+    background-color: var(--background-primary);
+    height: 500px;
+}
